@@ -1,0 +1,60 @@
+{
+  "expo": {
+    "name": "CutMatch",
+    "slug": "cutmatch",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/icons/app-icon-purple.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./src/assets/images/splash-light.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#6A0DAD"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.cutmatch.app",
+      "buildNumber": "1.0.0",
+      "infoPlist": {
+        "NSCameraUsageDescription": "CutMatch needs access to your camera to take photos for hairstyle analysis.",
+        "NSPhotoLibraryUsageDescription": "CutMatch needs access to your photo library to select photos for hairstyle analysis.",
+        "NSLocationWhenInUseUsageDescription": "CutMatch uses your location to find nearby barbershops and salons."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/icons/app-icon-purple.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.cutmatch.app",
+      "versionCode": 1,
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ]
+    },
+    "web": {
+      "favicon": "./src/assets/icons/app-icon-purple.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-camera",
+      "expo-image-picker",
+      "expo-location",
+      "expo-localization"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "your-eas-project-id"
+      }
+    },
+    "owner": "cutmatch-team"
+  }
+}
+

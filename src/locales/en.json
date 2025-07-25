@@ -1,0 +1,73 @@
+{
+  "app": {
+    "name": "CutMatch",
+    "tagline": "Discover Your Perfect Hairstyle"
+  },
+  "splash": {
+    "tagline": "Discover Your Perfect Hairstyle"
+  },
+  "upload": {
+    "title": "Upload Your Photo",
+    "subtitle": "Take or upload a clear photo of your face",
+    "takePhoto": "Take Photo",
+    "chooseGallery": "Choose from Gallery",
+    "analyzePhoto": "Analyze My Face",
+    "noPhotoSelected": "No photo selected",
+    "permissionNeeded": "Permission needed",
+    "cameraPermissionMessage": "Please grant camera permissions to use this feature.",
+    "galleryPermissionMessage": "Please grant camera roll permissions to use this feature.",
+    "noPhotoAlert": "No photo selected",
+    "selectPhotoFirst": "Please select or take a photo first."
+  },
+  "analyzing": {
+    "title": "Analyzing Your Face Shape",
+    "detectingFace": "🔍 Detecting face shape...",
+    "analyzingHair": "💇 Analyzing hair type...",
+    "findingStyles": "🎨 Finding perfect styles...",
+    "subtitle": "Our AI is analyzing your features to find the perfect hairstyles for you"
+  },
+  "suggestions": {
+    "title": "TRY ON HAIRSTYLES",
+    "selectHairstyle": "SELECT HAIRSTYLE",
+    "viewStyleDetails": "VIEW STYLE DETAILS"
+  },
+  "detail": {
+    "save": "💾 Save",
+    "share": "📤 Share",
+    "findBarber": "Find Barber",
+    "tryAnother": "Try Another Style",
+    "styleSaved": "Style Saved",
+    "styleSavedMessage": "This hairstyle has been saved to your favorites!",
+    "shareStyle": "Share Style",
+    "shareMessage": "Sharing functionality would be implemented here.",
+    "findBarberTitle": "Find Barber",
+    "findBarberMessage": "Nearby barber search would be implemented here.",
+    "faceShape": "Face Shape",
+    "hairType": "Hair Type",
+    "maintenance": "Maintenance"
+  },
+  "common": {
+    "back": "Back",
+    "next": "Next",
+    "cancel": "Cancel",
+    "ok": "OK",
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry"
+  },
+  "hairTypes": {
+    "straight": "Straight",
+    "wavy": "Wavy",
+    "curly": "Curly",
+    "coily": "Coily",
+    "kinky": "Kinky",
+    "any": "Any"
+  },
+  "maintenance": {
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High",
+    "veryLow": "Very Low"
+  }
+}
+

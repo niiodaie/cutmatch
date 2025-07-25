@@ -1,0 +1,73 @@
+{
+  "app": {
+    "name": "CutMatch",
+    "tagline": "Descubre Tu Peinado Perfecto"
+  },
+  "splash": {
+    "tagline": "Descubre Tu Peinado Perfecto"
+  },
+  "upload": {
+    "title": "Sube Tu Foto",
+    "subtitle": "Toma o sube una foto clara de tu rostro",
+    "takePhoto": "Tomar Foto",
+    "chooseGallery": "Elegir de la Galería",
+    "analyzePhoto": "Analizar Mi Rostro",
+    "noPhotoSelected": "Ninguna foto seleccionada",
+    "permissionNeeded": "Permiso necesario",
+    "cameraPermissionMessage": "Por favor concede permisos de cámara para usar esta función.",
+    "galleryPermissionMessage": "Por favor concede permisos de galería para usar esta función.",
+    "noPhotoAlert": "Ninguna foto seleccionada",
+    "selectPhotoFirst": "Por favor selecciona o toma una foto primero."
+  },
+  "analyzing": {
+    "title": "Analizando la Forma de Tu Rostro",
+    "detectingFace": "🔍 Detectando forma del rostro...",
+    "analyzingHair": "💇 Analizando tipo de cabello...",
+    "findingStyles": "🎨 Encontrando estilos perfectos...",
+    "subtitle": "Nuestra IA está analizando tus características para encontrar los peinados perfectos para ti"
+  },
+  "suggestions": {
+    "title": "PRUEBA PEINADOS",
+    "selectHairstyle": "SELECCIONAR PEINADO",
+    "viewStyleDetails": "VER DETALLES DEL ESTILO"
+  },
+  "detail": {
+    "save": "💾 Guardar",
+    "share": "📤 Compartir",
+    "findBarber": "Encontrar Barbero",
+    "tryAnother": "Probar Otro Estilo",
+    "styleSaved": "Estilo Guardado",
+    "styleSavedMessage": "¡Este peinado ha sido guardado en tus favoritos!",
+    "shareStyle": "Compartir Estilo",
+    "shareMessage": "La funcionalidad de compartir se implementaría aquí.",
+    "findBarberTitle": "Encontrar Barbero",
+    "findBarberMessage": "La búsqueda de barberos cercanos se implementaría aquí.",
+    "faceShape": "Forma del Rostro",
+    "hairType": "Tipo de Cabello",
+    "maintenance": "Mantenimiento"
+  },
+  "common": {
+    "back": "Atrás",
+    "next": "Siguiente",
+    "cancel": "Cancelar",
+    "ok": "OK",
+    "loading": "Cargando...",
+    "error": "Error",
+    "retry": "Reintentar"
+  },
+  "hairTypes": {
+    "straight": "Liso",
+    "wavy": "Ondulado",
+    "curly": "Rizado",
+    "coily": "Crespo",
+    "kinky": "Muy Rizado",
+    "any": "Cualquiera"
+  },
+  "maintenance": {
+    "low": "Bajo",
+    "medium": "Medio",
+    "high": "Alto",
+    "veryLow": "Muy Bajo"
+  }
+}
+

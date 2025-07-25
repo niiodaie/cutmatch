@@ -1,0 +1,73 @@
+{
+  "app": {
+    "name": "CutMatch",
+    "tagline": "Découvrez Votre Coiffure Parfaite"
+  },
+  "splash": {
+    "tagline": "Découvrez Votre Coiffure Parfaite"
+  },
+  "upload": {
+    "title": "Téléchargez Votre Photo",
+    "subtitle": "Prenez ou téléchargez une photo claire de votre visage",
+    "takePhoto": "Prendre une Photo",
+    "chooseGallery": "Choisir dans la Galerie",
+    "analyzePhoto": "Analyser Mon Visage",
+    "noPhotoSelected": "Aucune photo sélectionnée",
+    "permissionNeeded": "Permission nécessaire",
+    "cameraPermissionMessage": "Veuillez accorder les permissions de caméra pour utiliser cette fonctionnalité.",
+    "galleryPermissionMessage": "Veuillez accorder les permissions de galerie pour utiliser cette fonctionnalité.",
+    "noPhotoAlert": "Aucune photo sélectionnée",
+    "selectPhotoFirst": "Veuillez d'abord sélectionner ou prendre une photo."
+  },
+  "analyzing": {
+    "title": "Analyse de la Forme de Votre Visage",
+    "detectingFace": "🔍 Détection de la forme du visage...",
+    "analyzingHair": "💇 Analyse du type de cheveux...",
+    "findingStyles": "🎨 Recherche des styles parfaits...",
+    "subtitle": "Notre IA analyse vos caractéristiques pour trouver les coiffures parfaites pour vous"
+  },
+  "suggestions": {
+    "title": "ESSAYEZ DES COIFFURES",
+    "selectHairstyle": "SÉLECTIONNER COIFFURE",
+    "viewStyleDetails": "VOIR DÉTAILS DU STYLE"
+  },
+  "detail": {
+    "save": "💾 Sauvegarder",
+    "share": "📤 Partager",
+    "findBarber": "Trouver un Coiffeur",
+    "tryAnother": "Essayer un Autre Style",
+    "styleSaved": "Style Sauvegardé",
+    "styleSavedMessage": "Cette coiffure a été sauvegardée dans vos favoris!",
+    "shareStyle": "Partager le Style",
+    "shareMessage": "La fonctionnalité de partage serait implémentée ici.",
+    "findBarberTitle": "Trouver un Coiffeur",
+    "findBarberMessage": "La recherche de coiffeurs à proximité serait implémentée ici.",
+    "faceShape": "Forme du Visage",
+    "hairType": "Type de Cheveux",
+    "maintenance": "Entretien"
+  },
+  "common": {
+    "back": "Retour",
+    "next": "Suivant",
+    "cancel": "Annuler",
+    "ok": "OK",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "retry": "Réessayer"
+  },
+  "hairTypes": {
+    "straight": "Lisses",
+    "wavy": "Ondulés",
+    "curly": "Bouclés",
+    "coily": "Crépus",
+    "kinky": "Frisés",
+    "any": "Tous"
+  },
+  "maintenance": {
+    "low": "Faible",
+    "medium": "Moyen",
+    "high": "Élevé",
+    "veryLow": "Très Faible"
+  }
+}
+
