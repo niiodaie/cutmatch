@@ -4,34 +4,28 @@ import * as Localization from 'expo-localization';
 
 // Import translation files
 import en from '../locales/en.json';
-import fr from '../locales/fr.json';
 import es from '../locales/es.json';
+import fr from '../locales/fr.json';
 
 const resources = {
   en: { translation: en },
-  fr: { translation: fr },
   es: { translation: es },
-};
-
-// Get device language
-const getDeviceLanguage = () => {
-  const locale = Localization.locale;
-  if (locale.startsWith('fr')) return 'fr';
-  if (locale.startsWith('es')) return 'es';
-  return 'en'; // Default to English
+  fr: { translation: fr },
 };
 
 i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: getDeviceLanguage(),
+    lng: Localization.locale.split('-')[0] || 'en', // Use device language or fallback to English
     fallbackLng: 'en',
+    
     interpolation: {
-      escapeValue: false,
+      escapeValue: false, // React already does escaping
     },
+    
     react: {
-      useSuspense: false,
+      useSuspense: false, // Disable suspense for React Native
     },
   });
 
