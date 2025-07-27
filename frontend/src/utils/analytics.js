@@ -1,296 +1,257 @@
-// Google Analytics 4 (GA4) integration for CutMatch
-import { Platform } from 'react-native';
+// Google Analytics 4 and AdSense Integration Utilities
+// This file contains placeholder implementations for GA4 and AdSense
 
-// Configuration - replace with your actual GA4 measurement ID
-const GA4_MEASUREMENT_ID = process.env.EXPO_PUBLIC_GA4_MEASUREMENT_ID || 'G-XXXXXXXXXX';
-const GA4_API_SECRET = process.env.EXPO_PUBLIC_GA4_API_SECRET || 'your-api-secret';
-
-// Analytics configuration
+// Environment configuration
 const ANALYTICS_CONFIG = {
-  enabled: process.env.EXPO_PUBLIC_ENABLE_ANALYTICS !== 'false',
-  debug: __DEV__,
+  GA4_MEASUREMENT_ID: process.env.REACT_APP_GA4_MEASUREMENT_ID || 'G-XXXXXXXXXX',
+  ADSENSE_CLIENT_ID: process.env.REACT_APP_ADSENSE_CLIENT_ID || 'ca-pub-xxxxxxxxxx',
+  DEBUG_MODE: process.env.NODE_ENV === 'development'
 };
 
-// Generate a unique client ID for this app installation
-let clientId = null;
+// Google Analytics 4 Implementation
+export const initializeGA4 = () => {
+  if (typeof window === 'undefined') return;
 
-const generateClientId = async () => {
-  if (clientId) return clientId;
+  try {
+    // Load gtag script
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${ANALYTICS_CONFIG.GA4_MEASUREMENT_ID}`;
+    document.head.appendChild(script);
+
+    // Initialize gtag
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
+    window.gtag = gtag;
+
+    gtag('js', new Date());
+    gtag('config', ANALYTICS_CONFIG.GA4_MEASUREMENT_ID, {
+      page_title: document.title,
+      page_location: window.location.href,
+      debug_mode: ANALYTICS_CONFIG.DEBUG_MODE
+    });
+
+    if (ANALYTICS_CONFIG.DEBUG_MODE) {
+      console.log('GA4 initialized with ID:', ANALYTICS_CONFIG.GA4_MEASUREMENT_ID);
+    }
+  } catch (error) {
+    console.error('Failed to initialize GA4:', error);
+  }
+};
+
+// Track page views
+export const trackPageView = (pagePath, pageTitle) => {
+  if (typeof window === 'undefined' || !window.gtag) return;
+
+  try {
+    window.gtag('config', ANALYTICS_CONFIG.GA4_MEASUREMENT_ID, {
+      page_path: pagePath,
+      page_title: pageTitle
+    });
+
+    if (ANALYTICS_CONFIG.DEBUG_MODE) {
+      console.log('Page view tracked:', { pagePath, pageTitle });
+    }
+  } catch (error) {
+    console.error('Failed to track page view:', error);
+  }
+};
+
+// Track custom events
+export const trackEvent = (eventName, parameters = {}) => {
+  if (typeof window === 'undefined' || !window.gtag) return;
+
+  try {
+    window.gtag('event', eventName, {
+      event_category: parameters.category || 'engagement',
+      event_label: parameters.label,
+      value: parameters.value,
+      ...parameters
+    });
+
+    if (ANALYTICS_CONFIG.DEBUG_MODE) {
+      console.log('Event tracked:', { eventName, parameters });
+    }
+  } catch (error) {
+    console.error('Failed to track event:', error);
+  }
+};
+
+// CutMatch specific event tracking
+export const trackCutMatchEvents = {
+  // User actions
+  signUp: (method) => trackEvent('sign_up', { method }),
+  login: (method) => trackEvent('login', { method }),
+  logout: () => trackEvent('logout'),
   
+  // Style interactions
+  styleView: (styleId, styleName) => trackEvent('view_item', {
+    item_id: styleId,
+    item_name: styleName,
+    item_category: 'hairstyle'
+  }),
+  styleFavorite: (styleId, styleName) => trackEvent('add_to_favorites', {
+    item_id: styleId,
+    item_name: styleName,
+    item_category: 'hairstyle'
+  }),
+  styleShare: (styleId, styleName, method) => trackEvent('share', {
+    item_id: styleId,
+    item_name: styleName,
+    method: method,
+    content_type: 'hairstyle'
+  }),
+  
+  // Search and discovery
+  search: (searchTerm, results) => trackEvent('search', {
+    search_term: searchTerm,
+    results_count: results
+  }),
+  filterApply: (filterType, filterValue) => trackEvent('filter_apply', {
+    filter_type: filterType,
+    filter_value: filterValue
+  }),
+  
+  // Location and salon interactions
+  locationDetect: (city, country) => trackEvent('location_detect', {
+    city: city,
+    country: country
+  }),
+  salonView: (salonId, salonName) => trackEvent('view_salon', {
+    salon_id: salonId,
+    salon_name: salonName
+  }),
+  salonContact: (salonId, contactMethod) => trackEvent('salon_contact', {
+    salon_id: salonId,
+    contact_method: contactMethod
+  }),
+  
+  // Subscription and pricing
+  pricingView: () => trackEvent('view_pricing'),
+  planSelect: (planType, planPrice) => trackEvent('select_plan', {
+    plan_type: planType,
+    plan_price: planPrice,
+    currency: 'USD'
+  }),
+  subscriptionStart: (planType) => trackEvent('purchase', {
+    transaction_id: Date.now().toString(),
+    value: planType === 'pro' ? 9.99 : 0,
+    currency: 'USD',
+    items: [{
+      item_id: planType,
+      item_name: `CutMatch ${planType.charAt(0).toUpperCase() + planType.slice(1)}`,
+      category: 'subscription',
+      quantity: 1,
+      price: planType === 'pro' ? 9.99 : 0
+    }]
+  })
+};
+
+// Google AdSense Implementation
+export const initializeAdSense = () => {
+  if (typeof window === 'undefined') return;
+
   try {
-    const AsyncStorage = require('@react-native-async-storage/async-storage').default;
-    const storedClientId = await AsyncStorage.getItem('ga4_client_id');
-    
-    if (storedClientId) {
-      clientId = storedClientId;
-    } else {
-      // Generate a new client ID
-      clientId = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-      await AsyncStorage.setItem('ga4_client_id', clientId);
+    // Load AdSense script
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ANALYTICS_CONFIG.ADSENSE_CLIENT_ID}`;
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+
+    if (ANALYTICS_CONFIG.DEBUG_MODE) {
+      console.log('AdSense initialized with client ID:', ANALYTICS_CONFIG.ADSENSE_CLIENT_ID);
     }
-    
-    return clientId;
   } catch (error) {
-    console.warn('Error generating client ID:', error);
-    // Fallback to session-based client ID
-    clientId = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-    return clientId;
+    console.error('Failed to initialize AdSense:', error);
   }
 };
 
-// Send event to GA4 Measurement Protocol
-const sendGA4Event = async (eventName, parameters = {}) => {
-  if (!ANALYTICS_CONFIG.enabled) {
-    if (ANALYTICS_CONFIG.debug) {
-      console.log('[Analytics] Event (disabled):', eventName, parameters);
-    }
-    return;
+// AdSense ad slot configurations
+export const AD_SLOTS = {
+  BANNER_TOP: {
+    slot: '1234567890',
+    format: 'auto',
+    responsive: true,
+    style: { display: 'block' }
+  },
+  SIDEBAR: {
+    slot: '2345678901',
+    format: 'auto',
+    responsive: true,
+    style: { display: 'block' }
+  },
+  MOBILE_BANNER: {
+    slot: '3456789012',
+    format: 'auto',
+    responsive: true,
+    style: { display: 'block' }
+  },
+  IN_FEED: {
+    slot: '4567890123',
+    format: 'fluid',
+    layoutKey: '-6t+ed+2i-1n-4w',
+    style: { display: 'block' }
   }
+};
+
+// Load and display ads
+export const loadAd = (adSlot) => {
+  if (typeof window === 'undefined' || !window.adsbygoogle) return;
 
   try {
-    const client_id = await generateClientId();
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
     
-    const payload = {
-      client_id,
-      events: [
-        {
-          name: eventName,
-          params: {
-            ...parameters,
-            platform: Platform.OS,
-            app_version: '1.0.0',
-            timestamp_micros: Date.now() * 1000,
-            engagement_time_msec: parameters.engagement_time_msec || 1000,
-          },
-        },
-      ],
-    };
-
-    const response = await fetch(
-      `https://www.google-analytics.com/mp/collect?measurement_id=${GA4_MEASUREMENT_ID}&api_secret=${GA4_API_SECRET}`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      }
-    );
-
-    if (ANALYTICS_CONFIG.debug) {
-      console.log('[Analytics] Event sent:', eventName, parameters, response.status);
-    }
-
-    if (!response.ok) {
-      console.warn('GA4 event failed:', response.status, response.statusText);
+    if (ANALYTICS_CONFIG.DEBUG_MODE) {
+      console.log('Ad loaded for slot:', adSlot.slot);
     }
   } catch (error) {
-    console.warn('Error sending GA4 event:', error);
+    console.error('Failed to load ad:', error);
   }
 };
 
-// Analytics helper functions for CutMatch events
+// Privacy and consent management
+export const setAnalyticsConsent = (hasConsent) => {
+  if (typeof window === 'undefined' || !window.gtag) return;
 
-export const Analytics = {
-  // App lifecycle events
-  appLaunched: () => {
-    sendGA4Event('app_open', {
-      engagement_time_msec: 1,
+  try {
+    window.gtag('consent', 'update', {
+      analytics_storage: hasConsent ? 'granted' : 'denied',
+      ad_storage: hasConsent ? 'granted' : 'denied'
     });
-  },
 
-  // Screen view tracking
-  trackScreenView: (screenName, screenClass = null) => {
-    sendGA4Event('screen_view', {
-      screen_name: screenName,
-      screen_class: screenClass || screenName,
-      engagement_time_msec: 1000,
-    });
-  },
-
-  // Photo upload and analysis events
-  photoUploaded: (source) => {
-    sendGA4Event('photo_uploaded', {
-      photo_source: source, // 'camera' or 'gallery'
-    });
-  },
-
-  analysisStarted: (photoSource) => {
-    sendGA4Event('analysis_started', {
-      photo_source: photoSource,
-    });
-  },
-
-  analysisCompleted: (duration, suggestionsCount) => {
-    sendGA4Event('analysis_completed', {
-      analysis_duration: duration,
-      suggestions_count: suggestionsCount,
-    });
-  },
-
-  // Style interaction events
-  styleViewed: (styleId, styleName, confidence) => {
-    sendGA4Event('style_viewed', {
-      style_id: styleId,
-      style_name: styleName,
-      confidence_score: confidence,
-    });
-  },
-
-  styleFavorited: (styleId, styleName) => {
-    sendGA4Event('style_favorited', {
-      style_id: styleId,
-      style_name: styleName,
-    });
-  },
-
-  styleUnfavorited: (styleId, styleName) => {
-    sendGA4Event('style_unfavorited', {
-      style_id: styleId,
-      style_name: styleName,
-    });
-  },
-
-  styleShared: (styleId, styleName, shareMethod) => {
-    sendGA4Event('share', {
-      content_type: 'hairstyle',
-      item_id: styleId,
-      style_name: styleName,
-      method: shareMethod, // 'link', 'qr_code', 'social'
-    });
-  },
-
-  // Filter and search events
-  filtersApplied: (filters) => {
-    sendGA4Event('filters_applied', {
-      mood: filters.mood || 'none',
-      event: filters.event || 'none',
-      season: filters.season || 'none',
-      hair_type: filters.hairType || 'none',
-    });
-  },
-
-  searchPerformed: (query, resultsCount) => {
-    sendGA4Event('search', {
-      search_term: query,
-      results_count: resultsCount,
-    });
-  },
-
-  // User profile events
-  profileUpdated: (changes) => {
-    sendGA4Event('profile_updated', {
-      fields_changed: Object.keys(changes).join(','),
-    });
-  },
-
-  languageChanged: (fromLanguage, toLanguage) => {
-    sendGA4Event('language_changed', {
-      from_language: fromLanguage,
-      to_language: toLanguage,
-    });
-  },
-
-  // Engagement events
-  sessionStarted: () => {
-    sendGA4Event('session_start', {
-      engagement_time_msec: 1,
-    });
-  },
-
-  screenViewed: (screenName, timeSpent) => {
-    sendGA4Event('screen_view', {
-      screen_name: screenName,
-      time_spent: timeSpent,
-    });
-  },
-
-  // Error events
-  errorOccurred: (errorType, errorMessage, screen) => {
-    sendGA4Event('exception', {
-      description: `${errorType}: ${errorMessage}`,
-      fatal: false,
-      screen_name: screen,
-    });
-  },
-
-  // Custom events for CutMatch specific features
-  pricingViewed: (styleId) => {
-    sendGA4Event('pricing_viewed', {
-      style_id: styleId,
-    });
-  },
-
-  salonContactAttempted: (method) => {
-    sendGA4Event('salon_contact_attempted', {
-      contact_method: method, // 'phone', 'website', 'directions'
-    });
-  },
-
-  affirmationViewed: (affirmationType) => {
-    sendGA4Event('affirmation_viewed', {
-      affirmation_type: affirmationType,
-    });
-  },
-
-  // Conversion events
-  userSignedUp: (method) => {
-    sendGA4Event('sign_up', {
-      method: method, // 'email', 'google', 'apple'
-    });
-  },
-
-  userLoggedIn: (method) => {
-    sendGA4Event('login', {
-      method: method,
-    });
-  },
-
-  // Helper function to track custom events
-  trackCustomEvent: (eventName, parameters = {}) => {
-    sendGA4Event(eventName, parameters);
-  },
-
-  // Action tracking methods
-  trackEvent: (eventName, parameters = {}) => {
-    sendGA4Event(eventName, parameters);
-  },
-
-  trackAction: (actionName, actionData = {}) => {
-    sendGA4Event('user_action', {
-      action_name: actionName,
-      ...actionData,
-    });
-  },
-
-  // Button and interaction tracking
-  trackButtonPress: (buttonName, screenName) => {
-    sendGA4Event('button_press', {
-      button_name: buttonName,
-      screen_name: screenName,
-    });
-  },
-
-  trackNavigation: (fromScreen, toScreen) => {
-    sendGA4Event('navigation', {
-      from_screen: fromScreen,
-      to_screen: toScreen,
-    });
-  },
-
-  // Feature usage tracking
-  trackFeatureUsage: (featureName, featureData = {}) => {
-    sendGA4Event('feature_usage', {
-      feature_name: featureName,
-      ...featureData,
-    });
-  },
+    if (ANALYTICS_CONFIG.DEBUG_MODE) {
+      console.log('Analytics consent updated:', hasConsent);
+    }
+  } catch (error) {
+    console.error('Failed to update consent:', error);
+  }
 };
 
-// Initialize analytics when the module is imported
-if (ANALYTICS_CONFIG.enabled) {
-  Analytics.appLaunched();
-}
+// Initialize all analytics services
+export const initializeAnalytics = () => {
+  if (typeof window === 'undefined') return;
 
-export default Analytics;
+  // Set default consent state
+  if (window.gtag) {
+    window.gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+  }
+
+  // Initialize services
+  initializeGA4();
+  initializeAdSense();
+
+  if (ANALYTICS_CONFIG.DEBUG_MODE) {
+    console.log('All analytics services initialized');
+  }
+};
+
+// Export configuration for external use
+export { ANALYTICS_CONFIG };
 

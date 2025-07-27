@@ -1,313 +1,262 @@
-# CutMatch - Style Before You Snip
+# CutMatch Phase 2 - Frontend Implementation
 
-**An AI-powered mobile app that helps users discover hairstyles that fit their face and identity, focusing on style visualization and self-expression.**
+## Overview
 
-![CutMatch Logo](./src/assets/icons/app-icon-purple.png)
+CutMatch Phase 2 is a comprehensive React-based frontend implementation that includes a pre-login hero page, routing system, geolocation detection, social login UI, pricing page, enhanced footer, theme improvements, analytics placeholders, and API mocks.
 
-## 🌟 Project Overview
+## Features Implemented
 
-CutMatch is a global, mobile-first AI-powered app that helps users discover their ideal hairstyle. Users take or upload a photo, and the app suggests 3–5 personalized styles based on face shape, hair type, and cultural preferences. The experience is inclusive, multilingual, and focused on beauty, wellness, and expression.
+### ✅ Core Features
+- **Hero Landing Page**: Engaging pre-login experience with call-to-action buttons
+- **Routing System**: Client-side navigation between different pages
+- **Geolocation Detection**: Location-based salon discovery (with mock implementation)
+- **Social Login UI**: Google and Apple sign-in buttons with proper styling
+- **Pricing Page**: Free vs Pro tier comparison with interactive elements
+- **Enhanced Footer**: Comprehensive footer with multiple sections and social links
 
-### 🎯 Core Objective
-Build an AI-based mobile app that helps users discover hairstyles that fit their face and identity before going to the salon. Not a booking app — this is a style visualization and self-expression tool.
+### ✅ Technical Enhancements
+- **Theme System**: Custom CSS variables and enhanced styling
+- **Icon Integration**: Lucide React icons throughout the application
+- **Analytics Placeholders**: Google Analytics 4 and AdSense integration stubs
+- **API Mock System**: Complete mock API implementation for development
+- **Responsive Design**: Mobile-first approach with Tailwind CSS
 
-### 🏷️ Tagline
-*"CutMatch is a mirror into how people feel, express, and grow."*
+### ✅ User Experience
+- **Smooth Animations**: Framer Motion animations for page transitions
+- **Interactive Elements**: Hover states, loading animations, and micro-interactions
+- **Accessibility**: Proper ARIA labels and keyboard navigation support
+- **Performance**: Optimized loading and rendering
 
-## ✨ Key Features
+## Project Structure
 
-### 📷 Photo Analysis & AI Suggestions
-- Upload or capture photos for instant analysis
-- AI detects face shape, hair type, and skin tone
-- Suggests 3-5 personalized hairstyles with confidence scores
-- Filters for mood, event, season, and hair type
+```
+cutmatch-frontend/
+├── public/
+│   ├── index.html
+│   └── favicon.ico
+├── src/
+│   ├── assets/
+│   │   ├── app-icon-gold-updated.png
+│   │   ├── app-icon-purple-updated.png
+│   │   ├── splash-icon-gold.png
+│   │   └── splash-icon-purple.png
+│   ├── components/
+│   │   ├── ui/
+│   │   │   ├── button.jsx
+│   │   │   ├── card.jsx
+│   │   │   ├── badge.jsx
+│   │   │   └── select.jsx
+│   │   ├── AdBanner.jsx
+│   │   ├── Footer.jsx
+│   │   ├── HeroPage.jsx
+│   │   ├── LocationDisplay.jsx
+│   │   ├── Navigation.jsx
+│   │   ├── PricingPage.jsx
+│   │   └── SocialLoginButtons.jsx
+│   ├── utils/
+│   │   ├── analytics.js
+│   │   ├── api.js
+│   │   └── geolocation.js
+│   ├── App.css
+│   ├── App.jsx
+│   └── main.jsx
+├── package.json
+└── README.md
+```
 
-### 🌍 Inclusive & Diverse Styling
-- Supports all hair types: straight, wavy, curly, coily, kinky
-- Cultural diversity: Afro, curls, fades, braids, Asian, Middle Eastern, hijab-aware styles
-- Gender-neutral and fluid options available
-- Represents African-American, Asian, Latino, Middle Eastern, and mixed heritage styles
+## Technology Stack
 
-### 🎨 Personalization Features
-- Save favorite styles with personal notes
-- Customizable user profile (skin tone, hair type, cultural background, gender expression)
-- Daily affirmations based on mood (optional)
-- Multi-language support (English, Spanish, French)
+- **React 18**: Modern React with hooks and functional components
+- **Vite**: Fast build tool and development server
+- **Tailwind CSS**: Utility-first CSS framework
+- **Framer Motion**: Animation library for smooth transitions
+- **Lucide React**: Beautiful icon library
+- **Shadcn/UI**: High-quality UI components
 
-### 🔗 Sharing & Salon Integration
-- Generate shareable links for each saved style
-- Print QR codes with style references for salons
-- Share collections with stylists
-- No booking system - focused on style discovery
-
-### 🛍️ Product Recommendations
-- Placeholder section for hair care products
-- Future monetization via affiliate links
-- Recommendations based on selected hairstyles
-
-## 🏗️ Technical Architecture
-
-### Frontend (React Native + Expo)
-- **Framework**: React Native with Expo SDK 53
-- **Navigation**: React Navigation (Stack + Bottom Tabs)
-- **State Management**: React Hooks + AsyncStorage
-- **Internationalization**: react-i18next
-- **Camera/Photos**: expo-camera, expo-image-picker
-- **Location**: expo-location
-- **Sharing**: expo-sharing, expo-print
-
-### Mock AI Engine
-- Diverse hairstyle database with 15+ inclusive styles
-- Face shape and hair type matching algorithm
-- Cultural context and gender expression filtering
-- Confidence scoring and match reasoning
-
-### Data Storage
-- Local storage using AsyncStorage
-- User profiles, favorites, and notes stored on device
-- No external database required for core functionality
-
-## 📱 App Screens
-
-1. **Splash Screen** - Brand introduction with manifesto
-2. **Upload Screen** - Photo capture/upload with tips
-3. **Analyzing Screen** - AI processing with progress indicators
-4. **Suggestions Screen** - Style results with filtering options
-5. **Style Detail Screen** - Detailed view with sharing options
-6. **Favorites Screen** - Saved styles with notes
-7. **Profile Screen** - User preferences and personalization
-8. **Settings Screen** - App configuration and data management
-
-## 🎨 Design System
-
-### Color Palette
-- **Primary Purple**: #6A0DAD
-- **Secondary Gold**: #D4AF37
-- **Background**: #F8F9FA
-- **Text Primary**: #2C2C2E
-- **Text Secondary**: #8E8E93
-
-### Typography
-- **Headers**: Bold, 24-36px
-- **Body**: Regular, 14-16px
-- **Captions**: Light, 12-14px
-
-### Icons & Assets
-- Purple/white app icon for primary branding
-- Gold/black app icon for premium variant
-- Custom splash screens for both themes
-- Consistent emoji usage for visual hierarchy
-
-## 🚀 Installation & Setup
+## Getting Started
 
 ### Prerequisites
-- Node.js 18+ and npm
-- Expo CLI (`npm install -g @expo/cli`)
-- iOS Simulator (Mac) or Android Studio (for testing)
+- Node.js 18+ 
+- npm or pnpm
 
-### Quick Start
+### Installation
+
+1. Navigate to the project directory:
 ```bash
-# Clone the repository
-git clone <repository-url>
-cd cutmatch-v2
+cd cutmatch-frontend
+```
 
-# Install dependencies
+2. Install dependencies:
+```bash
 npm install
-
-# Start development server
-npm start
-
-# Run on specific platforms
-npm run ios     # iOS Simulator
-npm run android # Android Emulator
-npm run web     # Web browser
+# or
+pnpm install
 ```
 
-### Dependencies
-```json
-{
-  "@react-navigation/native": "^6.x",
-  "@react-navigation/stack": "^6.x",
-  "@react-navigation/bottom-tabs": "^6.x",
-  "expo-camera": "~15.x",
-  "expo-image-picker": "~15.x",
-  "expo-location": "~17.x",
-  "expo-localization": "~15.x",
-  "expo-sharing": "~12.x",
-  "expo-print": "~13.x",
-  "react-i18next": "^14.x",
-  "@react-native-async-storage/async-storage": "^2.x"
-}
-```
-
-## 📂 Project Structure
-
-```
-cutmatch-v2/
-├── src/
-│   ├── screens/           # Main app screens
-│   │   ├── SplashScreen.js
-│   │   ├── UploadScreen.js
-│   │   ├── AnalyzingScreen.js
-│   │   ├── SuggestionsScreen.js
-│   │   ├── StyleDetailScreen.js
-│   │   ├── FavoritesScreen.js
-│   │   ├── ProfileScreen.js
-│   │   └── SettingsScreen.js
-│   ├── components/        # Reusable UI components
-│   │   ├── Button.js
-│   │   ├── StyleCard.js
-│   │   └── LoadingSpinner.js
-│   ├── utils/            # Utilities and helpers
-│   │   ├── mock-style-engine.js
-│   │   └── i18n.js
-│   ├── locales/          # Internationalization
-│   │   ├── en.json
-│   │   ├── es.json
-│   │   └── fr.json
-│   └── assets/           # Images and icons
-│       ├── icons/
-│       └── images/
-├── App.js               # Main app component
-├── app.json            # Expo configuration
-├── package.json        # Dependencies
-└── README.md          # This file
-```
-
-## 🌐 Internationalization
-
-CutMatch supports multiple languages with automatic device language detection:
-
-- **English** (en) - Default
-- **Spanish** (es) - Español
-- **French** (fr) - Français
-
-Add new languages by:
-1. Creating a new JSON file in `src/locales/`
-2. Adding the language to `src/utils/i18n.js`
-3. Updating the language selector in ProfileScreen
-
-## 🎯 Core Features Implementation
-
-### AI Style Engine (Mock)
-The mock AI engine includes:
-- 15+ diverse hairstyles covering all hair types and cultural contexts
-- Face shape matching (oval, round, square, heart, diamond, long)
-- Hair type compatibility (straight, wavy, curly, coily, kinky)
-- Cultural context awareness (African-American, Asian, Latino, Middle Eastern, etc.)
-- Gender expression support (masculine, feminine, neutral, fluid)
-
-### Personalization System
-- User profile with skin tone, hair type, and cultural preferences
-- Favorite styles with personal notes for stylists
-- Customizable filters for mood, event, season
-- Daily affirmations based on user mood (optional)
-
-### Sharing & Export
-- Generate shareable links with style data
-- Print QR codes for salon visits
-- Export user data (favorites, notes, preferences)
-- Social sharing integration
-
-## 🔒 Privacy & Data
-
-### Data Storage
-- All user data stored locally on device
-- No external servers or cloud storage
-- User controls all data export and deletion
-
-### Permissions
-- **Camera**: Photo capture for style analysis
-- **Photo Library**: Image selection for analysis
-- **Location**: Finding nearby salons (optional)
-
-### Privacy Features
-- Complete data export functionality
-- One-click data deletion
-- Transparent privacy policy
-- No tracking without consent
-
-## 🚀 Deployment
-
-### Expo Build Configuration
-The app is configured for deployment on:
-- **iOS App Store** (Bundle ID: com.visnec.cutmatch)
-- **Google Play Store** (Package: com.visnec.cutmatch)
-- **Web** (Progressive Web App support)
-
-### Build Commands
+3. Start the development server:
 ```bash
-# Build for iOS
-eas build --platform ios
-
-# Build for Android
-eas build --platform android
-
-# Build for Web
-expo export:web
+npm run dev
+# or
+pnpm run dev
 ```
 
-## 🎨 Brand Assets
+4. Open your browser and visit `http://localhost:5174`
 
-### App Icons
-- **Purple Theme**: Primary branding with purple gradient
-- **Gold Theme**: Premium variant with gold/black scheme
-- **Sizes**: 1024x1024 (App Store), 512x512 (Play Store), various iOS/Android sizes
+### Available Scripts
 
-### Splash Screens
-- **Purple Variant**: Matches primary app icon theme
-- **Gold Variant**: Premium alternative theme
-- **Responsive**: Adapts to different screen sizes and orientations
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
 
-## 🌟 Future Enhancements
+## Configuration
 
-### Phase 2 Features
-- Real AI integration with face detection API
-- Advanced hair texture analysis
-- Seasonal style recommendations
-- Social features and style sharing community
+### Environment Variables
 
-### Monetization
-- Premium subscription tier
-- Affiliate product recommendations
-- Professional stylist partnerships
-- Advanced AI features
+Create a `.env` file in the root directory:
+
+```env
+# Analytics Configuration
+REACT_APP_GA4_MEASUREMENT_ID=G-XXXXXXXXXX
+REACT_APP_ADSENSE_CLIENT_ID=ca-pub-xxxxxxxxxx
+
+# API Configuration
+REACT_APP_API_BASE_URL=http://localhost:5000/api
+REACT_APP_MOCK_API=true
+
+# Development Settings
+NODE_ENV=development
+```
+
+### API Integration
+
+The application includes a comprehensive mock API system located in `src/utils/api.js`. This provides:
+
+- Authentication endpoints (login, register, social login)
+- Hairstyles API (browse, search, favorites)
+- Salons API (nearby search, details)
+- Location detection
+- User profile management
+- Analytics tracking
+
+To switch to a real backend, update the `REACT_APP_API_BASE_URL` and set `REACT_APP_MOCK_API=false`.
+
+## Features Deep Dive
+
+### Hero Landing Page
+- Responsive design with mobile-first approach
+- Call-to-action buttons for different user flows
+- Animated elements using Framer Motion
+- Integration with analytics tracking
+
+### Pricing Page
+- Free vs Pro tier comparison
+- Interactive plan selection
+- Animated cards with hover effects
+- Integration with subscription tracking
+
+### Location System
+- Browser geolocation API integration
+- IP-based location detection fallback
+- Nearby salon discovery
+- Interactive salon cards with contact information
+
+### Social Login
+- Google and Apple sign-in buttons
+- Proper OAuth flow placeholders
+- Consistent styling with brand theme
+- Analytics event tracking
+
+### Analytics Integration
+- Google Analytics 4 setup
+- Custom event tracking for user actions
+- AdSense placeholder implementation
+- Privacy-compliant consent management
+
+## Customization
+
+### Theme Colors
+The application uses CSS custom properties for theming. Update `src/App.css` to modify:
+
+- Primary colors (purple variants)
+- Secondary colors (gold/amber variants)
+- Gradients and shadows
+- Animation timings
+
+### Component Styling
+Components use Tailwind CSS classes with custom CSS for enhanced styling. The design system includes:
+
+- Consistent spacing and typography
+- Hover and focus states
+- Responsive breakpoints
+- Dark mode support (prepared)
+
+## Performance Considerations
+
+- **Code Splitting**: Components are loaded on-demand
+- **Image Optimization**: Proper image formats and lazy loading
+- **Bundle Size**: Optimized imports and tree shaking
+- **Caching**: Service worker ready for PWA implementation
+
+## Browser Support
+
+- Chrome 90+
+- Firefox 88+
+- Safari 14+
+- Edge 90+
+
+## Deployment
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+The `dist` folder contains the production-ready files.
+
+### Deployment Options
+
+1. **Static Hosting**: Deploy to Netlify, Vercel, or GitHub Pages
+2. **CDN**: Upload to AWS S3 + CloudFront
+3. **Server**: Serve with nginx or Apache
+
+## Future Enhancements
+
+### Phase 3 Roadmap
+- Real backend API integration
+- User authentication system
+- Payment processing for Pro subscriptions
+- Advanced search and filtering
+- Real-time chat with stylists
+- Appointment booking system
+- Push notifications
+- Progressive Web App (PWA) features
 
 ### Technical Improvements
-- Offline mode with cached styles
-- Advanced filtering and search
-- Style history and trends
-- Performance optimizations
+- Server-side rendering (SSR) with Next.js
+- State management with Redux or Zustand
+- End-to-end testing with Playwright
+- Performance monitoring with Web Vitals
+- Internationalization (i18n) support
 
-## 🤝 Contributing
+## Contributing
 
-### Development Guidelines
-1. Follow React Native best practices
-2. Maintain consistent code formatting
-3. Add proper TypeScript types (future enhancement)
-4. Include comprehensive testing
-5. Update documentation for new features
+1. Follow the existing code style and conventions
+2. Use TypeScript for new components (migration in progress)
+3. Write tests for new features
+4. Update documentation for significant changes
+5. Follow semantic commit messages
 
-### Code Style
-- Use functional components with hooks
-- Implement proper error handling
-- Follow accessibility guidelines
-- Maintain responsive design principles
+## License
 
-## 📄 License
+This project is proprietary software developed for CutMatch by Visnec Nexus.
 
-This project is proprietary software owned by Visnec Technologies. All rights reserved.
+## Support
 
-## 📞 Support
-
-For technical support or questions:
-- **Email**: support@cutmatch.app
-- **Website**: https://cutmatch.app
-- **Documentation**: https://docs.cutmatch.app
+For technical support or questions about this implementation, please contact the development team.
 
 ---
 
-**CutMatch** - *Style Before You Snip* 💇‍♀️✨
-
-*"CutMatch is a mirror into how people feel, express, and grow."*
+**Built with ❤️ for the global hair community**
 
