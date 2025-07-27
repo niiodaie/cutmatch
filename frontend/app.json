@@ -1,0 +1,74 @@
+{
+  "expo": {
+    "name": "CutMatch",
+    "slug": "cutmatch",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/icons/app-icon-purple.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./src/assets/images/splash-purple.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#6A0DAD"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.visnec.cutmatch",
+      "buildNumber": "1.0.0",
+      "infoPlist": {
+        "NSCameraUsageDescription": "CutMatch needs camera access to take photos for hairstyle analysis.",
+        "NSPhotoLibraryUsageDescription": "CutMatch needs photo library access to select images for hairstyle analysis.",
+        "NSLocationWhenInUseUsageDescription": "CutMatch uses location to find nearby hair salons and stylists."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/icons/app-icon-purple.png",
+        "backgroundColor": "#6A0DAD"
+      },
+      "package": "com.visnec.cutmatch",
+      "versionCode": 1,
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION"
+      ]
+    },
+    "web": {
+      "favicon": "./src/assets/icons/app-icon-purple.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow CutMatch to access your camera to take photos for hairstyle analysis."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow CutMatch to access your photo library to select images for hairstyle analysis."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow CutMatch to use your location to find nearby hair salons and stylists."
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "cutmatch-visnec-2025"
+      }
+    },
+    "owner": "visnec"
+  }
+}
+
