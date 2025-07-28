@@ -1,6 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { supabase } from '../utils/supabaseClient';
 
 // Supabase configuration
 // Replace these with your actual Supabase project URL and anon key

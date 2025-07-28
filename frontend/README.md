@@ -1,307 +1,313 @@
-# FaceUp - AI Hairstyle Recommendations
+# CutMatch - Style Before You Snip
 
-FaceUp is a modern web application that uses AI technology to analyze facial features and provide personalized hairstyle recommendations. Built with React, Tailwind CSS, and Framer Motion for a smooth, professional user experience.
+**An AI-powered mobile app that helps users discover hairstyles that fit their face and identity, focusing on style visualization and self-expression.**
 
-## 🌟 Features
+![CutMatch Logo](./src/assets/icons/app-icon-purple.png)
 
-### Core Functionality
-- **AI-Powered Analysis**: Upload photos for intelligent facial feature analysis
-- **Personalized Recommendations**: Get hairstyle suggestions tailored to your unique features
-- **Interactive Photo Upload**: Drag-and-drop or camera capture functionality
-- **Preference Customization**: Set gender, hair type, and lifestyle preferences
-- **Detailed Recommendations**: Each suggestion includes styling tips, difficulty level, and maintenance requirements
+## 🌟 Project Overview
 
-### User Experience
-- **Modern UI/UX**: Clean, gradient-based design with smooth animations
-- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
-- **Authentication Flow**: Complete login and signup system with social login options
-- **Progressive Enhancement**: Works without JavaScript for basic functionality
+CutMatch is a global, mobile-first AI-powered app that helps users discover their ideal hairstyle. Users take or upload a photo, and the app suggests 3–5 personalized styles based on face shape, hair type, and cultural preferences. The experience is inclusive, multilingual, and focused on beauty, wellness, and expression.
 
-### Additional Pages
-- **Hero Landing Page**: Engaging introduction with feature highlights
-- **How to Use Guide**: Step-by-step instructions for best results
-- **Subscription Plans**: Free vs Pro tier comparison
-- **404 Error Page**: Helpful navigation when pages aren't found
+### 🎯 Core Objective
+Build an AI-based mobile app that helps users discover hairstyles that fit their face and identity before going to the salon. Not a booking app — this is a style visualization and self-expression tool.
 
-## 🚀 Getting Started
+### 🏷️ Tagline
+*"CutMatch is a mirror into how people feel, express, and grow."*
 
-### Prerequisites
-- Node.js 18+ 
-- pnpm (recommended) or npm
+## ✨ Key Features
 
-### Installation
+### 📷 Photo Analysis & AI Suggestions
+- Upload or capture photos for instant analysis
+- AI detects face shape, hair type, and skin tone
+- Suggests 3-5 personalized hairstyles with confidence scores
+- Filters for mood, event, season, and hair type
 
-1. **Clone or extract the project**
-   ```bash
-   cd faceup-frontend
-   ```
+### 🌍 Inclusive & Diverse Styling
+- Supports all hair types: straight, wavy, curly, coily, kinky
+- Cultural diversity: Afro, curls, fades, braids, Asian, Middle Eastern, hijab-aware styles
+- Gender-neutral and fluid options available
+- Represents African-American, Asian, Latino, Middle Eastern, and mixed heritage styles
 
-2. **Install dependencies**
-   ```bash
-   pnpm install
-   # or
-   npm install
-   ```
+### 🎨 Personalization Features
+- Save favorite styles with personal notes
+- Customizable user profile (skin tone, hair type, cultural background, gender expression)
+- Daily affirmations based on mood (optional)
+- Multi-language support (English, Spanish, French)
 
-3. **Start development server**
-   ```bash
-   pnpm run dev
-   # or
-   npm run dev
-   ```
+### 🔗 Sharing & Salon Integration
+- Generate shareable links for each saved style
+- Print QR codes with style references for salons
+- Share collections with stylists
+- No booking system - focused on style discovery
 
-4. **Open in browser**
-   Navigate to `http://localhost:5173`
+### 🛍️ Product Recommendations
+- Placeholder section for hair care products
+- Future monetization via affiliate links
+- Recommendations based on selected hairstyles
 
-### Building for Production
+## 🏗️ Technical Architecture
 
-```bash
-pnpm run build
-# or
-npm run build
-```
+### Frontend (React Native + Expo)
+- **Framework**: React Native with Expo SDK 53
+- **Navigation**: React Navigation (Stack + Bottom Tabs)
+- **State Management**: React Hooks + AsyncStorage
+- **Internationalization**: react-i18next
+- **Camera/Photos**: expo-camera, expo-image-picker
+- **Location**: expo-location
+- **Sharing**: expo-sharing, expo-print
 
-The built files will be in the `dist/` directory.
+### Mock AI Engine
+- Diverse hairstyle database with 15+ inclusive styles
+- Face shape and hair type matching algorithm
+- Cultural context and gender expression filtering
+- Confidence scoring and match reasoning
 
-## 🏗️ Project Structure
+### Data Storage
+- Local storage using AsyncStorage
+- User profiles, favorites, and notes stored on device
+- No external database required for core functionality
 
-```
-faceup-frontend/
-├── src/
-│   ├── components/          # Reusable UI components
-│   │   ├── ui/             # Base UI components (shadcn/ui)
-│   │   ├── Hero.jsx        # Landing page hero section
-│   │   ├── RecommendationCard.jsx  # Hairstyle recommendation display
-│   │   └── SocialLoginButtons.jsx  # Authentication components
-│   ├── routes/             # Page components
-│   │   ├── Recommend.jsx   # Main recommendation page
-│   │   ├── Login.jsx       # User login page
-│   │   ├── Signup.jsx      # User registration page
-│   │   ├── Subscribe.jsx   # Subscription plans page
-│   │   ├── HowToUse.jsx    # Usage instructions page
-│   │   └── NotFound.jsx    # 404 error page
-│   ├── lib/                # Utility libraries
-│   │   ├── mockRecommendations.js  # Sample hairstyle data
-│   │   └── aiPromptBuilder.js      # AI prompt construction utilities
-│   ├── App.jsx             # Main application component
-│   ├── App.css             # Global styles and custom CSS
-│   └── main.jsx            # Application entry point
-├── public/                 # Static assets
-├── index.html              # HTML template
-└── package.json            # Project dependencies
-```
+## 📱 App Screens
+
+1. **Splash Screen** - Brand introduction with manifesto
+2. **Upload Screen** - Photo capture/upload with tips
+3. **Analyzing Screen** - AI processing with progress indicators
+4. **Suggestions Screen** - Style results with filtering options
+5. **Style Detail Screen** - Detailed view with sharing options
+6. **Favorites Screen** - Saved styles with notes
+7. **Profile Screen** - User preferences and personalization
+8. **Settings Screen** - App configuration and data management
 
 ## 🎨 Design System
 
-### Colors
-- **Primary**: Indigo gradient (#6366f1 to #8b5cf6)
-- **Secondary**: Amber (#f59e0b)
-- **Accent**: Pink (#ec4899)
-- **Success**: Emerald (#10b981)
-- **Error**: Red (#ef4444)
+### Color Palette
+- **Primary Purple**: #6A0DAD
+- **Secondary Gold**: #D4AF37
+- **Background**: #F8F9FA
+- **Text Primary**: #2C2C2E
+- **Text Secondary**: #8E8E93
 
 ### Typography
-- **Headings**: Inter font family, bold weights
-- **Body**: Inter font family, regular weight
-- **UI Elements**: System font stack for optimal performance
+- **Headers**: Bold, 24-36px
+- **Body**: Regular, 14-16px
+- **Captions**: Light, 12-14px
 
-### Components
-- Built with shadcn/ui for consistency
-- Custom animations using Framer Motion
-- Responsive design with Tailwind CSS
-- Accessible by default with proper ARIA labels
+### Icons & Assets
+- Purple/white app icon for primary branding
+- Gold/black app icon for premium variant
+- Custom splash screens for both themes
+- Consistent emoji usage for visual hierarchy
 
-## 🔧 Technology Stack
+## 🚀 Installation & Setup
 
-### Frontend Framework
-- **React 18**: Modern React with hooks and functional components
-- **Vite**: Fast build tool and development server
-- **JavaScript**: ES6+ with modern syntax
+### Prerequisites
+- Node.js 18+ and npm
+- Expo CLI (`npm install -g @expo/cli`)
+- iOS Simulator (Mac) or Android Studio (for testing)
 
-### Styling & UI
-- **Tailwind CSS**: Utility-first CSS framework
-- **shadcn/ui**: High-quality component library
-- **Framer Motion**: Smooth animations and transitions
-- **Lucide Icons**: Beautiful, consistent icon set
+### Quick Start
+```bash
+# Clone the repository
+git clone <repository-url>
+cd cutmatch-v2
 
-### Development Tools
-- **ESLint**: Code linting and quality checks
-- **PostCSS**: CSS processing and optimization
-- **Autoprefixer**: Automatic vendor prefixing
+# Install dependencies
+npm install
 
-## 🤖 AI Integration
+# Start development server
+npm start
 
-### Mock Implementation
-The current implementation uses mock data and simulated AI responses for development and demonstration purposes.
+# Run on specific platforms
+npm run ios     # iOS Simulator
+npm run android # Android Emulator
+npm run web     # Web browser
+```
 
-### AI Prompt Builder
-- Constructs detailed prompts for AI services
-- Includes user preferences and photo analysis
-- Supports multiple prompt types (hairstyle, face shape, hair type)
-- Validates input data before processing
+### Dependencies
+```json
+{
+  "@react-navigation/native": "^6.x",
+  "@react-navigation/stack": "^6.x",
+  "@react-navigation/bottom-tabs": "^6.x",
+  "expo-camera": "~15.x",
+  "expo-image-picker": "~15.x",
+  "expo-location": "~17.x",
+  "expo-localization": "~15.x",
+  "expo-sharing": "~12.x",
+  "expo-print": "~13.x",
+  "react-i18next": "^14.x",
+  "@react-native-async-storage/async-storage": "^2.x"
+}
+```
 
-### Recommendation Engine
-- Filters suggestions based on user preferences
-- Provides detailed styling information
-- Includes difficulty and maintenance ratings
-- Supports favorite and sharing functionality
+## 📂 Project Structure
 
-### Future Integration
-Ready for integration with real AI services:
-- OpenAI GPT-4 Vision for image analysis
-- Custom trained models for hairstyle recognition
-- Real-time recommendation generation
-- Advanced facial feature detection
+```
+cutmatch-v2/
+├── src/
+│   ├── screens/           # Main app screens
+│   │   ├── SplashScreen.js
+│   │   ├── UploadScreen.js
+│   │   ├── AnalyzingScreen.js
+│   │   ├── SuggestionsScreen.js
+│   │   ├── StyleDetailScreen.js
+│   │   ├── FavoritesScreen.js
+│   │   ├── ProfileScreen.js
+│   │   └── SettingsScreen.js
+│   ├── components/        # Reusable UI components
+│   │   ├── Button.js
+│   │   ├── StyleCard.js
+│   │   └── LoadingSpinner.js
+│   ├── utils/            # Utilities and helpers
+│   │   ├── mock-style-engine.js
+│   │   └── i18n.js
+│   ├── locales/          # Internationalization
+│   │   ├── en.json
+│   │   ├── es.json
+│   │   └── fr.json
+│   └── assets/           # Images and icons
+│       ├── icons/
+│       └── images/
+├── App.js               # Main app component
+├── app.json            # Expo configuration
+├── package.json        # Dependencies
+└── README.md          # This file
+```
 
-## 📱 Features in Detail
+## 🌐 Internationalization
 
-### Photo Upload System
-- **Multiple Input Methods**: Camera capture, file upload, drag-and-drop
-- **Image Validation**: Checks file type and size
-- **Preview Functionality**: Shows uploaded image before analysis
-- **Error Handling**: Graceful handling of upload failures
+CutMatch supports multiple languages with automatic device language detection:
 
-### Recommendation Display
-- **Rich Cards**: Detailed information for each hairstyle
-- **Interactive Elements**: Favorite, share, and save functionality
-- **Filtering Options**: Sort by difficulty, maintenance, or style type
-- **Professional Tips**: Expert advice for each recommendation
+- **English** (en) - Default
+- **Spanish** (es) - Español
+- **French** (fr) - Français
 
-### Authentication System
-- **Social Login**: Google OAuth integration ready
-- **Email/Password**: Traditional authentication flow
-- **Form Validation**: Real-time validation with helpful error messages
-- **Security Features**: Password strength indicator, remember me option
+Add new languages by:
+1. Creating a new JSON file in `src/locales/`
+2. Adding the language to `src/utils/i18n.js`
+3. Updating the language selector in ProfileScreen
 
-### Responsive Design
-- **Mobile-First**: Optimized for mobile devices
-- **Tablet Support**: Adapted layouts for medium screens
-- **Desktop Enhancement**: Full-featured experience on large screens
-- **Touch-Friendly**: Large tap targets and gesture support
+## 🎯 Core Features Implementation
 
-## 🔒 Security & Privacy
+### AI Style Engine (Mock)
+The mock AI engine includes:
+- 15+ diverse hairstyles covering all hair types and cultural contexts
+- Face shape matching (oval, round, square, heart, diamond, long)
+- Hair type compatibility (straight, wavy, curly, coily, kinky)
+- Cultural context awareness (African-American, Asian, Latino, Middle Eastern, etc.)
+- Gender expression support (masculine, feminine, neutral, fluid)
 
-### Data Protection
-- No personal photos stored permanently
-- Client-side image processing when possible
-- Secure authentication token handling
-- GDPR-compliant data practices
+### Personalization System
+- User profile with skin tone, hair type, and cultural preferences
+- Favorite styles with personal notes for stylists
+- Customizable filters for mood, event, season
+- Daily affirmations based on user mood (optional)
 
-### Best Practices
-- Input sanitization and validation
-- Secure API communication
-- Error handling without data exposure
-- Regular security dependency updates
+### Sharing & Export
+- Generate shareable links with style data
+- Print QR codes for salon visits
+- Export user data (favorites, notes, preferences)
+- Social sharing integration
+
+## 🔒 Privacy & Data
+
+### Data Storage
+- All user data stored locally on device
+- No external servers or cloud storage
+- User controls all data export and deletion
+
+### Permissions
+- **Camera**: Photo capture for style analysis
+- **Photo Library**: Image selection for analysis
+- **Location**: Finding nearby salons (optional)
+
+### Privacy Features
+- Complete data export functionality
+- One-click data deletion
+- Transparent privacy policy
+- No tracking without consent
 
 ## 🚀 Deployment
 
-### Static Hosting
-The application can be deployed to any static hosting service:
-- **Vercel**: Automatic deployments from Git
-- **Netlify**: Continuous deployment with form handling
-- **GitHub Pages**: Free hosting for public repositories
-- **AWS S3**: Scalable cloud storage with CloudFront CDN
+### Expo Build Configuration
+The app is configured for deployment on:
+- **iOS App Store** (Bundle ID: com.visnec.cutmatch)
+- **Google Play Store** (Package: com.visnec.cutmatch)
+- **Web** (Progressive Web App support)
 
-### Environment Variables
-For production deployment, configure:
-```env
-VITE_API_BASE_URL=your-api-endpoint
-VITE_GOOGLE_CLIENT_ID=your-google-oauth-id
-VITE_ANALYTICS_ID=your-analytics-id
+### Build Commands
+```bash
+# Build for iOS
+eas build --platform ios
+
+# Build for Android
+eas build --platform android
+
+# Build for Web
+expo export:web
 ```
 
-## 🧪 Testing
+## 🎨 Brand Assets
 
-### Manual Testing Checklist
-- [ ] Photo upload functionality
-- [ ] Recommendation generation
-- [ ] User authentication flow
-- [ ] Responsive design on all devices
-- [ ] Navigation between pages
-- [ ] Form validation and error handling
+### App Icons
+- **Purple Theme**: Primary branding with purple gradient
+- **Gold Theme**: Premium variant with gold/black scheme
+- **Sizes**: 1024x1024 (App Store), 512x512 (Play Store), various iOS/Android sizes
 
-### Automated Testing (Future)
-- Unit tests for utility functions
-- Component testing with React Testing Library
-- End-to-end testing with Playwright
-- Visual regression testing
+### Splash Screens
+- **Purple Variant**: Matches primary app icon theme
+- **Gold Variant**: Premium alternative theme
+- **Responsive**: Adapts to different screen sizes and orientations
+
+## 🌟 Future Enhancements
+
+### Phase 2 Features
+- Real AI integration with face detection API
+- Advanced hair texture analysis
+- Seasonal style recommendations
+- Social features and style sharing community
+
+### Monetization
+- Premium subscription tier
+- Affiliate product recommendations
+- Professional stylist partnerships
+- Advanced AI features
+
+### Technical Improvements
+- Offline mode with cached styles
+- Advanced filtering and search
+- Style history and trends
+- Performance optimizations
 
 ## 🤝 Contributing
 
-### Development Workflow
-1. Create feature branch from main
-2. Implement changes with proper testing
-3. Update documentation as needed
-4. Submit pull request with detailed description
+### Development Guidelines
+1. Follow React Native best practices
+2. Maintain consistent code formatting
+3. Add proper TypeScript types (future enhancement)
+4. Include comprehensive testing
+5. Update documentation for new features
 
-### Code Standards
-- Use ESLint configuration for consistent formatting
-- Follow React best practices and hooks guidelines
-- Write descriptive commit messages
-- Include comments for complex logic
+### Code Style
+- Use functional components with hooks
+- Implement proper error handling
+- Follow accessibility guidelines
+- Maintain responsive design principles
 
 ## 📄 License
 
-This project is proprietary software. All rights reserved.
+This project is proprietary software owned by Visnec Technologies. All rights reserved.
 
-## 🆘 Support
+## 📞 Support
 
 For technical support or questions:
-- Check the troubleshooting section below
-- Review the How to Use guide in the application
-- Contact the development team
-
-## 🔧 Troubleshooting
-
-### Common Issues
-
-**Development server won't start**
-- Ensure Node.js 18+ is installed
-- Delete `node_modules` and reinstall dependencies
-- Check for port conflicts (default: 5173)
-
-**Images not uploading**
-- Verify file size is under 10MB
-- Check file format (JPG, PNG, WebP supported)
-- Ensure browser permissions for camera access
-
-**Styling issues**
-- Clear browser cache and reload
-- Check for Tailwind CSS compilation errors
-- Verify all dependencies are installed
-
-**Performance issues**
-- Optimize images before upload
-- Check browser developer tools for errors
-- Ensure adequate device memory
-
-### Browser Support
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
-
-## 🗺️ Roadmap
-
-### Phase 1 (Current)
-- ✅ Core UI implementation
-- ✅ Mock AI integration
-- ✅ Authentication flow
-- ✅ Responsive design
-
-### Phase 2 (Planned)
-- Real AI service integration
-- User profile management
-- Favorite hairstyles storage
-- Social sharing features
-
-### Phase 3 (Future)
-- Stylist marketplace integration
-- Appointment booking system
-- Advanced filtering options
-- Mobile app development
+- **Email**: support@cutmatch.app
+- **Website**: https://cutmatch.app
+- **Documentation**: https://docs.cutmatch.app
 
 ---
 
-**Built with ❤️ using React, Tailwind CSS, and modern web technologies.**
+**CutMatch** - *Style Before You Snip* 💇‍♀️✨
+
+*"CutMatch is a mirror into how people feel, express, and grow."*
 
