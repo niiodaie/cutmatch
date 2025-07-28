@@ -1,143 +1,111 @@
-import React, { useState } from 'react';
+import appIconPurple from '../assets/app-icon-purple.png';
+import React from 'react';
+import { Camera, User, LogOut, Sparkles } from 'lucide-react';
 import { Button } from './ui/button';
-import { Menu, X, User, Settings, Heart, Home, DollarSign } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import appIconPurple from '../assets/app-icon-purple-updated.png';
+import { useAuth } from './AuthContext';
+import proIcon from '../assets/proicon.png';
 
 const Navigation = ({ currentPage, onNavigate }) => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user, logout, isAuthenticated } = useAuth();
 
-  const navItems = [
-    { id: 'home', label: 'Home', icon: Home, href: '/' },
-    { id: 'dashboard', label: 'Dashboard', icon: User, href: '/dashboard' },
-    { id: 'pricing', label: 'Pricing', icon: DollarSign, href: '/pricing' },
-    { id: 'about', label: 'About', icon: Heart, href: '/about' }
-  ];
+  const handleGetStarted = () => {
+    if (isAuthenticated) {
+      onNavigate('upload');
+    } else {
+      onNavigate('signup');
+    }
+  };
 
-  const handleNavClick = (item) => {
-    onNavigate(item.id);
-    setIsMobileMenuOpen(false);
+  const handleTryNow = () => {
+    if (isAuthenticated) {
+      onNavigate('upload');
+    } else {
+      onNavigate('signup');
+    }
+  };
+
+  const handleLogout = () => {
+    logout();
+    onNavigate('home');
   };
 
   return (
-    <nav className="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-purple-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div 
-            className="flex items-center space-x-3 cursor-pointer"
-            onClick={() => handleNavClick({ id: 'home' })}
+            className="flex items-center space-x-2 cursor-pointer"
+            onClick={() => onNavigate('home')}
           >
-            <img src={appIconPurple} alt="CutMatch" className="w-8 h-8" />
-            <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">
-              CutMatch
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center">
+              <img src={appIconPurple} alt="CutMatch AI Logo" className="w-full h-full object-contain" />
+            </div>
+            <span className="text-xl font-bold cutmatch-gradient-text">
+              CutMatch AI
             </span>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => {
-              const IconComponent = item.icon;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item)}
-                  className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 ${
-                    currentPage === item.id
-                      ? 'bg-purple-100 text-purple-700'
-                      : 'text-gray-600 hover:text-purple-600 hover:bg-purple-50'
-                  }`}
+          {/* Navigation Items */}
+          <div className="flex items-center space-x-4">
+            {isAuthenticated ? (
+              <>
+                {/* Authenticated Navigation */}
+                <Button
+                  variant="ghost"
+                  onClick={() => onNavigate('upload')}
+                  className="text-gray-600 hover:text-purple-600"
                 >
-                  <IconComponent className="h-4 w-4" />
-                  <span className="font-medium">{item.label}</span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Desktop Auth Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Button 
-              variant="ghost" 
-              onClick={() => onNavigate('login')}
-              className="text-gray-600 hover:text-purple-600"
-            >
-              Sign In
-            </Button>
-            <Button 
-              onClick={() => onNavigate('signup')}
-              className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white"
-            >
-              Get Started
-            </Button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2"
-            >
-              {isMobileMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </Button>
+                  <Camera className="w-4 h-4 mr-2" />
+                  Upload Photo
+                </Button>
+                
+                {user?.isPro && (
+                  <div className="flex items-center space-x-1 px-3 py-1 bg-gradient-to-r from-amber-400 to-amber-500 rounded-full">
+                    <img src={proIcon} alt="Pro" className="w-4 h-4" />
+                    <span className="text-xs font-semibold text-white">PRO</span>
+                  </div>
+                )}
+                
+                <div className="flex items-center space-x-2">
+                  <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center">
+                    <User className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-700">
+                    {user?.name || user?.email?.split('@')[0]}
+                  </span>
+                </div>
+                
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleLogout}
+                  className="text-gray-500 hover:text-red-600"
+                >
+                  <LogOut className="w-4 h-4" />
+                </Button>
+              </>
+            ) : (
+              <>
+                {/* Unauthenticated Navigation */}
+                <Button
+                  variant="ghost"
+                  onClick={() => onNavigate('login')}
+                  className="text-gray-600 hover:text-purple-600"
+                >
+                  Sign In
+                </Button>
+                
+                <Button
+                  onClick={handleGetStarted}
+                  className="cutmatch-button-primary"
+                >
+                  Get Started
+                </Button>
+              </>
+            )}
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.2 }}
-              className="md:hidden border-t border-gray-200 py-4"
-            >
-              <div className="flex flex-col space-y-2">
-                {navItems.map((item) => {
-                  const IconComponent = item.icon;
-                  return (
-                    <button
-                      key={item.id}
-                      onClick={() => handleNavClick(item)}
-                      className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 ${
-                        currentPage === item.id
-                          ? 'bg-purple-100 text-purple-700'
-                          : 'text-gray-600 hover:text-purple-600 hover:bg-purple-50'
-                      }`}
-                    >
-                      <IconComponent className="h-5 w-5" />
-                      <span className="font-medium">{item.label}</span>
-                    </button>
-                  );
-                })}
-                
-                {/* Mobile Auth Buttons */}
-                <div className="pt-4 border-t border-gray-200 space-y-2">
-                  <Button 
-                    variant="ghost" 
-                    onClick={() => handleNavClick({ id: 'login' })}
-                    className="w-full justify-start text-gray-600 hover:text-purple-600"
-                  >
-                    Sign In
-                  </Button>
-                  <Button 
-                    onClick={() => handleNavClick({ id: 'signup' })}
-                    className="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white"
-                  >
-                    Get Started
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
     </nav>
   );

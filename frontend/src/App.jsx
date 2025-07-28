@@ -1,114 +1,50 @@
 import React, { useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
-import Hero from './components/Hero';
-import Recommend from './routes/Recommend';
-import Login from './routes/Login';
-import Signup from './routes/Signup';
-import Subscribe from './routes/Subscribe';
-import HowToUse from './routes/HowToUse';
-import NotFound from './routes/NotFound';
+import { AuthProvider } from './components/AuthContext';
+import Navigation from './components/Navigation';
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+import UploadPage from './pages/UploadPage';
 import './App.css';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('hero');
-  const [user, setUser] = useState(null);
+  const [currentPage, setCurrentPage] = useState('home');
+  const [pageData, setPageData] = useState(null);
 
-  const navigateTo = (page) => {
+  const handleNavigate = (page, data = null) => {
     setCurrentPage(page);
-  };
-
-  const handleLogin = (userData) => {
-    setUser(userData);
-    setCurrentPage('recommend');
-  };
-
-  const handleSignup = (userData) => {
-    setUser(userData);
-    setCurrentPage('recommend');
-  };
-
-  const handleLogout = () => {
-    setUser(null);
-    setCurrentPage('hero');
+    setPageData(data);
   };
 
   const renderPage = () => {
     switch (currentPage) {
-      case 'hero':
-        return (
-          <Hero
-            onGetStarted={() => navigateTo('recommend')}
-            onLogin={() => navigateTo('login')}
-            onSignup={() => navigateTo('signup')}
-          />
-        );
-      
-      case 'recommend':
-        return (
-          <Recommend
-            user={user}
-            onBack={() => navigateTo('hero')}
-            onLogin={() => navigateTo('login')}
-          />
-        );
-      
+      case 'home':
+        return <HomePage onNavigate={handleNavigate} />;
       case 'login':
-        return (
-          <Login
-            onBack={() => navigateTo('hero')}
-            onLogin={handleLogin}
-            onSignup={() => navigateTo('signup')}
-          />
-        );
-      
+        return <LoginPage onNavigate={handleNavigate} />;
       case 'signup':
-        return (
-          <Signup
-            onBack={() => navigateTo('hero')}
-            onSignup={handleSignup}
-            onLogin={() => navigateTo('login')}
-          />
-        );
-      
-      case 'subscribe':
-        return (
-          <Subscribe
-            onBack={() => navigateTo('hero')}
-          />
-        );
-      
-      case 'how-to-use':
-        return (
-          <HowToUse
-            onBack={() => navigateTo('hero')}
-            onGetStarted={() => navigateTo('recommend')}
-          />
-        );
-      
-      case 'not-found':
-        return (
-          <NotFound
-            onHome={() => navigateTo('hero')}
-            onBack={() => navigateTo('hero')}
-          />
-        );
-      
+        return <SignupPage onNavigate={handleNavigate} />;
+      case 'upload':
+        return <UploadPage onNavigate={handleNavigate} />;
+      case 'results':
+        return <div className="pt-20 min-h-screen cutmatch-bg-gradient flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">Results Page</h1>
+            <p className="text-gray-600">AI results display coming soon...</p>
+          </div>
+        </div>;
       default:
-        return (
-          <NotFound
-            onHome={() => navigateTo('hero')}
-            onBack={() => navigateTo('hero')}
-          />
-        );
+        return <HomePage onNavigate={handleNavigate} />;
     }
   };
 
   return (
-    <div className="App">
-      <AnimatePresence mode="wait">
+    <AuthProvider>
+      <div className="App">
+        <Navigation currentPage={currentPage} onNavigate={handleNavigate} />
         {renderPage()}
-      </AnimatePresence>
-    </div>
+      </div>
+    </AuthProvider>
   );
 }
 
