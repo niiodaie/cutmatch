@@ -8,8 +8,11 @@ import LocationDisplay from './components/LocationDisplay';
 import SocialLoginButtons from './components/SocialLoginButtons';
 import { Button } from './components/ui/button';
 import Footer from './components/Footer';
+import LoginScreen from './screens/LoginScreen';
 import { initializeAnalytics, trackPageView, trackCutMatchEvents } from './utils/analytics';
 import './App.css';
+
+<Route path="/" element={<LoginScreen />} />
 
 // Placeholder components for other pages
 const LoginPage = () => (
