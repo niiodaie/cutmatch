@@ -9,10 +9,12 @@ import SocialLoginButtons from './components/SocialLoginButtons';
 import { Button } from './components/ui/button';
 import Footer from './components/Footer';
 import LoginScreen from './screens/LoginScreen';
+import Recommend from "./routes/Recommend";
 import { initializeAnalytics, trackPageView, trackCutMatchEvents } from './utils/analytics';
 import './App.css';
 
 <Route path="/" element={<LoginScreen />} />
+<Route path="/recommend" element={<Recommend />} />
 
 // Placeholder components for other pages
 const LoginPage = () => (
